@@ -17,6 +17,8 @@ df %>% select(start, end)
 class(df$start)
 class(df$end)
 
-# filtering the dataset based on start date of 7th Aug 19
-df %>% 
-  filter(start=="7-Aug-19")
+
+# Calculate time difference
+difftime(as.POSIXct(df$start, format= "%H:%M:%S"), as.POSIXct(df$end, format="%H:%M:%S"),
+         unit="mins"
+         )
