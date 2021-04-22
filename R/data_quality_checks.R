@@ -1,5 +1,8 @@
 library(tidyverse)
 library(lubridate)
+install.packages("ggplot2")
+library(ggplot2)
+library("dplyr")
 
 # Load data set
 getwd()
@@ -19,6 +22,15 @@ class(df$end)
 
 
 # Calculate time difference
-difftime(as.POSIXct(df$start, format= "%H:%M:%S"), as.POSIXct(df$end, format="%H:%M:%S"),
+time_duration <- difftime(as.POSIXct(df$start, format= "%H:%M:%S"), as.POSIXct(df$end, format="%H:%M:%S"),
          unit="mins"
          )
+
+# Create histogram showing time duration
+
+ggplot() + geom_rect(data=df, aes(ymin=df$start, ymax=df$end,
+                                  xmin=df$end, xmax=df$start))
+
+
+
+
